@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 *Read this in other languages: [中国](README-cn.md).*
 
 # Deploy the Blockchain network using Kubernetes APIs on IBM Cloud
@@ -35,17 +36,39 @@ When the reader has completed this pattern, they will understand how to:
 2. Set context for Kubernetes cluster using CLI and download Kubernetes configuration files. After downloading configuration files, set KUBECONFIG environment variable.
 3. Run script to deploy your hyperledger fabric network on Kubernetes cluster.
 4. Access Kubernetes dashboard.
+=======
+
+# HF-K8s-Demo
+## ** Work in Progress **
+# Set up of Blockchain network using Kubernetes Cluster on IBM Cloud
+
+For developing any blockchain (Hyperledger Fabric) application, you need to setup a blockchain network to develop, test and execute the application. Blockchain network can be setup in multiple ways. 
+* Setup blockchain network locally (http://hyperledger-fabric.readthedocs.io/en/release/build_network.html)
+* Use blockchain network hosted on IBM Cloud (https://console.bluemix.net/catalog/services/blockchain)
+* Setup blockchain network using Kubernetes Cluster on IBM Cloud.
+
+This pattern will demonstrate a way to setup your blockchain network using Kubernetes Cluster on IBM Cloud.
+
+Hosting the blockchain network on [IBM Cloud](https://console.bluemix.net/) using [IBM Cloud Container Service](https://console.bluemix.net/containers-kubernetes/catalog/cluster) will provide you additional benefits like multiple users can work on the same setup, the setup can be used for different blockchain applications, the setup can be reused and so on.
+
+This pattern will provide you the scripts to automate the process for setting up blockchain network using Kubernetes Cluster on IBM Cloud.
+>>>>>>> Initial commit
 
 ## Included components
 
 * [Hyperledger Fabric](https://hyperledger-fabric.readthedocs.io/): Hyperledger Fabric is a platform for distributed ledger solutions underpinned by a modular architecture delivering high degrees of confidentiality, resiliency, flexibility and scalability.
 
+<<<<<<< HEAD
 * [IBM Cloud Kubernetes Service](https://cloud.ibm.com/containers-kubernetes/catalog/cluster): IBM Kubernetes Service enables the orchestration of intelligent scheduling, self-healing, and horizontal scaling.
+=======
+* [IBM Cloud Container Service](https://console.bluemix.net/containers-kubernetes/catalog/cluster): IBM Container Service enables the orchestration of intelligent scheduling, self-healing, and horizontal scaling.
+>>>>>>> Initial commit
 
 ## Featured technologies
 
 * [Blockchain](https://en.wikipedia.org/wiki/Blockchain): A blockchain is a digitized, decentralized, public ledger of all transactions in a network.
 
+<<<<<<< HEAD
 * [Kubernetes Cluster](https://kubernetes.io/docs/home/): In Kubernetes Engine, a container cluster consists of at least one cluster master and multiple worker machines called nodes. A container cluster is the foundation of Kubernetes Engine.
 
 ## Watch the Video
@@ -330,4 +353,33 @@ This code pattern is licensed under the Apache Software License, Version 2.  Sep
 [Apache Software License (ASL) FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
 =======
 # HF-K8s-Demo
+>>>>>>> Initial commit
+=======
+* [Kubernetes Cluster](https://kubernetes.io/docs): In Kubernetes Engine, a container cluster consists of at least one cluster master and multiple worker machines called nodes. A container cluster is the foundation of Kubernetes Engine.
+
+# Watch the Video
+
+TODO
+
+# Prerequisites
+
+* Install [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/get_started.html#getting-started)
+
+* Install [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+
+* Create a Kubernetes cluster with [IBM Cloud Container Service](https://console.bluemix.net/containers-kubernetes/catalog/cluster) to deploy in cloud.
+
+* Once ypur cluster is ready, follow the steps provided `Dashboard -> Clusters -> Access` to gain access of your cluster.
+
+# Steps
+
+Follow these steps to setup and run this code pattern.
+
+# Troubleshooting
+
+[See DEBUGGING.md.](DEBUGGING.md)
+
+# License
+
+[Apache 2.0](LICENSE)
 >>>>>>> Initial commit
