@@ -18,9 +18,9 @@ async function main() {
         console.log(`Wallet path: ${walletPath}`);
 
         // Check to see if we've already enrolled the user.
-        const userExists = await wallet.exists('user2');
+        const userExists = await wallet.exists('user1');
         if (!userExists) {
-            console.log('An identity for the user "user2" does not exist in the wallet');
+            console.log('An identity for the user "user1" does not exist in the wallet');
             console.log('Run the registerUser.js application before retrying');
             return;
         }
@@ -38,7 +38,8 @@ async function main() {
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction("query","b");
+        const result = await contract.evaluateTransaction("query","a");
+        // await contract.submitTransaction("invoke","a","b","20");
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 
     } catch (error) {
