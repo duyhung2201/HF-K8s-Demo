@@ -1,0 +1,67 @@
+{
+    "name": "first-network-org${ORG}",
+    "version": "1.0.0",
+    "client": {
+        "organization": "Org${ORG}",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "channels": {
+        "channel1": {
+            "orderers": [
+                "blockchain-orderer"
+            ],
+            "peers": {
+                "blockchain-org1peer1": {}
+            }
+        }
+    },
+    "organizations": {
+        "Org${ORG}": {
+            "mspid": "Org${ORG}MSP",
+            "peers": [
+                "blockchain-org${ORG}peer1"
+            ],
+            "certificateAuthorities": [
+                "blockchain-ca"
+            ]
+        }
+    },
+    "peers": {
+        "blockchain-org${ORG}peer1": {
+            "url": "grpc://173.193.112.165:${P0PORT}",
+            "tlsCACerts": {
+                "pem": "${PEERPEM}"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "blockchain-org${ORG}peer1",
+                "hostnameOverride": "blockchain-org${ORG}peer1"
+            }
+        }
+    },
+    "orderers": {
+        "orderer.example.com": {
+            "url": "grpc://173.193.112.165:${ODRPORT}",
+            "tlsCACerts": {
+                "pem": "${ODRPEM}"            
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "blockchain-ca": {
+            "url": "http://173.193.112.165:${CAPORT}",
+            "caName": "CA1",
+            "tlsCACerts": {
+                "pem": "${CAPEM}"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

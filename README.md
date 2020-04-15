@@ -284,3 +284,8 @@ The hyperledger fabric network is ready to use. You can start developing your bl
 ## License
 
 [Apache 2.0](LICENSE)
+
+export FABRIC_CFG_PATH=$PWD/shared
+configtxgen -profile FourOrgsChannel -outputAnchorPeersUpdate ./shared/Org1MSPanchors.tx -channelID channel1 -asOrg Org4MSP
+export FABRIC_CFG_PATH=/etc/hyperledger/fabric
+peer channel update -o blockchain-orderer:31010 -c channel1 -f ./shared/Org1MSPanchors.tx
