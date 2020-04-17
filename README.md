@@ -286,6 +286,14 @@ The hyperledger fabric network is ready to use. You can start developing your bl
 [Apache 2.0](LICENSE)
 
 export FABRIC_CFG_PATH=$PWD/shared
-configtxgen -profile FourOrgsChannel -outputAnchorPeersUpdate ./shared/Org1MSPanchors.tx -channelID channel1 -asOrg Org4MSP
+configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./shared/channel-artifacts/Org2MSPanchors.tx -channelID channel1 -asOrg Org2MSP
 export FABRIC_CFG_PATH=/etc/hyperledger/fabric
-peer channel update -o blockchain-orderer:31010 -c channel1 -f ./shared/Org1MSPanchors.tx
+peer channel update -o blockchain-orderer:31010 -c channel1 -f ./shared/channel-artifacts/Org2MSPanchors.tx
+
+peer channel create -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/channel.tx --tls --cafile ${ORDERER_CA}
+
+peer chaincode install -n cc -v 1.0 -p chaincode_example02/
+
+peer chaincode instantiate -o blockchain-orderer:31010 -C channel1 -n cc -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')"
+
+peer chaincode query -C channel1 -n cc -c '{"Args":["query","a"]}'

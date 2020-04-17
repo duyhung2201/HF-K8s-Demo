@@ -34,7 +34,7 @@ function json_ccp {
 ORG=1
 P0PORT=30110
 P1PORT=8051
-CAPORT=3054
+CAPORT=30054
 ODRPORT=31010
 PEERPEM=crypto-config/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
 CAPEM=crypto-config/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem

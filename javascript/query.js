@@ -1,3 +1,4 @@
+
 /*
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -18,16 +19,16 @@ async function main() {
         console.log(`Wallet path: ${walletPath}`);
 
         // Check to see if we've already enrolled the user.
-        const userExists = await wallet.exists('user3');
+        const userExists = await wallet.exists('user5');
         if (!userExists) {
-            console.log('An identity for the user "user3" does not exist in the wallet');
+            console.log('An identity for the user "user5" does not exist in the wallet');
             console.log('Run the registerUser.js application before retrying');
             return;
         }
 
         // Create a new gateway for connecting to our peer node.
         const gateway = new Gateway();
-        await gateway.connect(ccpPath, { wallet, identity: 'admin', discovery: { enabled: true, asLocalhost: false } });
+        await gateway.connect(ccpPath, { wallet, identity: 'user5', discovery: { enabled: true, asLocalhost: false } });
 
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork('channel1');
@@ -39,7 +40,6 @@ async function main() {
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
         const result = await contract.evaluateTransaction("query","a");
-        // await contract.submitTransaction("invoke","a","b","20");
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 
     } catch (error) {
