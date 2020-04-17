@@ -18,8 +18,12 @@ spec:
       - name: joinchannel1
         image: hyperledger/fabric-peer:1.4
         imagePullPolicy: Always
-        command: ["sh", "-c", "peer channel fetch newest -o ${ORDERER_URL} -c ${CHANNEL_NAME} && peer channel join -b ${CHANNEL_NAME}_newest.block "]
+        command: ["sh", "-c", "peer channel fetch newest -o ${ORDERER_URL} -c ${CHANNEL_NAME} && peer channel join -b ${CHANNEL_NAME}_newest.block 
+        && peer channel update -o ${ORDERER_URL} -c ${CHANNEL_NAME} -f ./shared/channel-artifacts/Org1MSPanchors.tx --tls --cafile ${ORDERER_CA}
+        "]
         env:
+        - name: ORDERER_CA
+          value:  /shared/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
         - name: CHANNEL_NAME
           value: channel1
         - name: CORE_PEER_NETWORKID
@@ -47,8 +51,12 @@ spec:
       - name: joinchannel2
         image: hyperledger/fabric-peer:1.4
         imagePullPolicy: Always
-        command: ["sh", "-c", "peer channel fetch newest -o ${ORDERER_URL} -c ${CHANNEL_NAME} && peer channel join -b ${CHANNEL_NAME}_newest.block "]
+        command: ["sh", "-c", "peer channel fetch newest -o ${ORDERER_URL} -c ${CHANNEL_NAME} && peer channel join -b ${CHANNEL_NAME}_newest.block 
+        && peer channel update -o ${ORDERER_URL} -c ${CHANNEL_NAME} -f ./shared/channel-artifacts/Org2MSPanchors.tx --tls --cafile ${ORDERER_CA}
+        "]
         env:
+        - name: ORDERER_CA
+          value:  /shared/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
         - name: CHANNEL_NAME
           value: channel1
         - name: CORE_PEER_NETWORKID

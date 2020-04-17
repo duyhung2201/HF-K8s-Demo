@@ -31,11 +31,11 @@ spec:
         - name: FABRIC_CA_SERVER_DEBUG
           value: "true"
         - name: FABRIC_CA_SERVER_TLS_ENABLED
-          value: "false"
+          value: "true"
         - name: FABRIC_CA_SERVER_TLS_CERTFILE
-          value: /certs/ca0a-cert.pem
+          value: /shared/crypto-config/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem
         - name: FABRIC_CA_SERVER_TLS_KEYFILE
-          value: /certs/ca0a-key.pem
+          value: /shared/crypto-config/peerOrganizations/org1.example.com/ca/key.pem
         - name: GODEBUG
           value: "netdns=go"
         volumeMounts:

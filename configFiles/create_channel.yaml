@@ -18,7 +18,13 @@ spec:
       - name: createchanneltx
         image: hyperledger/fabric-tools:1.4
         imagePullPolicy: Always
-        command: ["sh", "-c", "cd /shared && pwd && ls && export FABRIC_CFG_PATH=$PWD && configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ${CHANNEL_NAME}.tx -channelID ${CHANNEL_NAME} && touch /shared/status_channeltx_complete "]
+        command: ["sh", "-c", "cd /shared && pwd && ls && export FABRIC_CFG_PATH=$PWD 
+        && configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ${CHANNEL_NAME}.tx -channelID ${CHANNEL_NAME} 
+        && touch /shared/status_channeltx_complete 
+        && mkdir /shared/channel-artifacts/
+        && configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./shared/channel-artifacts/Org1MSPanchors.tx -channelID ${CHANNEL_NAME}  -asOrg Org1MSP
+        && configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./shared/channel-artifacts/Org2MSPanchors.tx -channelID ${CHANNEL_NAME}  -asOrg Org2MSP
+         "]
         env:
         - name: CHANNEL_NAME
           value: channel1
@@ -31,7 +37,10 @@ spec:
       - name: createchannel
         image: hyperledger/fabric-peer:1.4
         imagePullPolicy: Always
-        command: ["sh", "-c", "while [ ! -f /shared/status_channeltx_complete ]; do echo Waiting for channeltx; sleep 2; done; peer channel create -o ${ORDERER_URL} -c ${CHANNEL_NAME} -f /shared/${CHANNEL_NAME}.tx && rm /shared/status_channeltx_complete && touch /shared/status_channelcreate_complete"]
+        command: ["sh", "-c", "while [ ! -f /shared/status_channeltx_complete ]; do echo Waiting for channeltx; sleep 2; done; 
+        peer channel create -o ${ORDERER_URL} -c ${CHANNEL_NAME} -f /shared/${CHANNEL_NAME}.tx --tls --cafile ${ORDERER_CA}
+        && rm /shared/status_channeltx_complete && touch /shared/status_channelcreate_complete
+        "]
         env:
         - name: ORDERER_CA
           value:  /shared/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
