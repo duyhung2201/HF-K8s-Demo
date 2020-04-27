@@ -57,10 +57,10 @@ spec:
           value: initial
         - name: ORDERER_GENERAL_TLS_ENABLED
           value: "true"
-      - name: ORDERER_GENERAL_TLS_PRIVATEKEY 
-      - value: /shared/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.key
-      - name: ORDERER_GENERAL_TLS_CERTIFICATE
-      - name: /shared/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+        - name: ORDERER_GENERAL_TLS_PRIVATEKEY 
+          value: /shared/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.key
+        - name: ORDERER_GENERAL_TLS_CERTIFICATE
+          value: /shared/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
         - name: GODEBUG
           value: "netdns=go"
         volumeMounts:
